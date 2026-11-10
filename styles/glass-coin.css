@@ -26,8 +26,10 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: 9999px;
+  border-radius: 50%;
   overflow: hidden;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
   isolation: isolate;
   background: radial-gradient(
     circle at 34% 26%,
@@ -37,90 +39,89 @@
     rgba(5, 7, 12, 0.99) 100%
   );
   box-shadow:
-    inset 0 1.5px 2.5px rgba(255, 255, 255, 0.62),
-    inset 0 -2px 5px rgba(245, 178, 60, 0.42),
-    0 0 0 1.5px rgba(245, 178, 60, 0.58),
-    0 10px 26px -6px rgba(0, 0, 0, 0.88),
-    0 0 18px -3px rgba(245, 178, 60, 0.42);
-  transform-style: preserve-3d;
+    inset 0 0 0 1.5px rgba(245, 178, 60, 0.72),
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.65),
+    inset 0 -2.5px 6px rgba(245, 178, 60, 0.45);
 }
 
-/* Convex glass dome top-edge highlight */
+/* Convex circular glass dome top-edge highlight */
 .aig-glass-coin::before {
   content: "";
   position: absolute;
   inset: 1px;
-  border-radius: 9999px;
+  border-radius: 50%;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  -webkit-mask-image: radial-gradient(circle closest-side at 50% 50%, #000 94%, transparent 100%);
+  mask-image: radial-gradient(circle closest-side at 50% 50%, #000 94%, transparent 100%);
   background: radial-gradient(
-    115% 58% at 48% 6%,
-    rgba(255, 255, 255, 0.52) 0%,
-    rgba(255, 255, 255, 0.14) 44%,
-    transparent 72%
+    circle at 38% 16%,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.14) 40%,
+    transparent 68%
   );
   pointer-events: none;
   z-index: 3;
 }
 
-/* Specular light-beam reflection shifting across the glass coin surface */
+/* Strictly circular specular light reflection shifting across the glass coin lens */
 .aig-glass-coin::after {
   content: "";
   position: absolute;
-  inset: -45%;
-  background: linear-gradient(
-    116deg,
-    transparent 24%,
-    rgba(255, 255, 255, 0.08) 38%,
-    rgba(255, 255, 255, 0.82) 47%,
-    rgba(253, 224, 71, 0.62) 51%,
-    rgba(56, 189, 248, 0.28) 56%,
-    transparent 70%
-  );
-  mix-blend-mode: screen;
+  inset: 1px;
+  border-radius: 50%;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  -webkit-mask-image: radial-gradient(circle closest-side at 50% 50%, #000 93%, transparent 100%);
+  mask-image: radial-gradient(circle closest-side at 50% 50%, #000 93%, transparent 100%);
+  background-image:
+    radial-gradient(
+      circle at 32% 28%,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(253, 224, 71, 0.24) 28%,
+      transparent 58%
+    ),
+    linear-gradient(
+      118deg,
+      transparent 32%,
+      rgba(255, 255, 255, 0.12) 42%,
+      rgba(255, 255, 255, 0.82) 49%,
+      rgba(253, 224, 71, 0.58) 52%,
+      rgba(56, 189, 248, 0.26) 56%,
+      transparent 66%
+    );
+  background-size: 220% 220%, 260% 260%;
+  background-repeat: no-repeat;
+  background-position: 120% 120%, 135% 135%;
   pointer-events: none;
   z-index: 4;
-  transform: translateX(-62%) rotate(8deg);
 }
 
 @keyframes aig-coin-gleam {
-  0%, 14% {
-    transform: translateX(-68%) rotate(8deg);
-    opacity: 0.75;
+  0%, 12% {
+    background-position: 120% 120%, 135% 135%;
+    opacity: 0.72;
   }
-  46% {
-    transform: translateX(64%) rotate(8deg);
+  48% {
+    background-position: 18% 18%, -30% -30%;
     opacity: 1;
   }
-  62%, 100% {
-    transform: translateX(72%) rotate(8deg);
-    opacity: 0.2;
-  }
-}
-
-@keyframes aig-coin-tilt {
-  0%, 100% {
-    transform: perspective(260px) rotateY(-11deg) rotateX(6deg);
-  }
-  50% {
-    transform: perspective(260px) rotateY(11deg) rotateX(-5deg);
+  65%, 100% {
+    background-position: 85% 20%, -40% -40%;
+    opacity: 0.24;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .aig-glass-coin {
-    animation: aig-coin-tilt 4.6s ease-in-out infinite;
-  }
   .aig-glass-coin::after {
     animation: aig-coin-gleam 4.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aig-glass-coin {
-    animation: none;
-  }
   .aig-glass-coin::after {
     animation: none;
-    transform: translateX(-12%) rotate(8deg);
+    background-position: 50% 50%, 52% 52%;
     opacity: 0.45;
   }
 }
