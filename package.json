@@ -1,0 +1,48 @@
+{
+  "name": "ai-avatar-optimizer",
+  "version": "1.0.0",
+  "description": "Multi-variant AI widget & avatar randomizer, cookie-free press-to-open telemetry tracker, and time-windowed A/B/n auto-optimizer with 3D gleaming glass coin CSS.",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./glass-coin.css": "./styles/glass-coin.css",
+    "./schema.sql": "./sql/schema.sql"
+  },
+  "files": [
+    "src",
+    "styles",
+    "sql",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "keywords": [
+    "ai-widget",
+    "ab-testing",
+    "multi-armed-bandit",
+    "avatar-randomizer",
+    "telemetry",
+    "conversion-optimization",
+    "privacy-first-analytics",
+    "glassmorphism",
+    "chat-widget"
+  ],
+  "author": "Sandbox Synergy LLC (https://sandboxsynergy.org)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SandboxSynergy-org/ai-avatar-optimizer.git"
+  },
+  "homepage": "https://github.com/SandboxSynergy-org/ai-avatar-optimizer#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
